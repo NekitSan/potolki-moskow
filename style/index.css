@@ -164,9 +164,12 @@ iframe {
       font-size: 40px;
       line-height: 1.2;
       z-index: 11; }
+      .header__main__tile strong {
+        color: #de1b1b; }
     .header__main__text {
       position: relative;
       padding: 10px 0 50px 0;
+      font-size: 20px;
       color: #4f4f4f;
       z-index: 11; }
   .header__attention {
@@ -386,6 +389,40 @@ iframe {
       background-color: #de1b1b; }
       .pop_up__control .button--next:hover {
         background-color: #d54343; }
+  .pop_up__phone--call .pop_up__window {
+    width: 50%;
+    margin: 0 auto; }
+  .pop_up__phone--call h2 {
+    color: #de1b1b;
+    font-size: 22px;
+    text-align: center; }
+  .pop_up__phone--call p {
+    color: #4f4f4f;
+    font-size: 22px;
+    text-align: center;
+    margin-top: 3px; }
+  .pop_up__phone--call label {
+    display: block;
+    margin-top: 10px; }
+  .pop_up__phone--call input {
+    display: block;
+    width: 100%;
+    margin: 10px 0 30px;
+    border: 0;
+    padding: 12px 25px 11px 15px;
+    background-color: rgba(27, 27, 28, 0.1);
+    border-radius: 5px;
+    min-height: 56px;
+    line-height: 1.333;
+    font-size: 16px; }
+  .pop_up__phone--call .pop_up__button {
+    display: block;
+    margin: 0 auto;
+    padding: 12px 22px;
+    color: #fff;
+    background-color: #de1b1b; }
+    .pop_up__phone--call .pop_up__button:hover {
+      background-color: #d54343; }
 
 .test__variations {
   position: relative;
@@ -423,8 +460,92 @@ iframe {
   .close:hover {
     color: #1b1b1c; }
 
-#stage_data form label:first-child input {
-  margin-bottom: 10px; }
+#stage_data .pop_up__networks {
+  width: 50%;
+  margin: 0 auto;
+  padding: 50px 0 10px; }
+  #stage_data .pop_up__networks h3 {
+    width: 100%;
+    text-align: center;
+    color: #4f4f4f; }
+  #stage_data .pop_up__networks__area {
+    width: 100%;
+    height: auto;
+    padding: 10px 0; }
+  #stage_data .pop_up__networks__pointer {
+    position: relative;
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-align: center;
+        -ms-flex-align: center;
+            align-items: center;
+    -webkit-box-pack: end;
+        -ms-flex-pack: end;
+            justify-content: flex-end;
+    -webkit-box-orient: horizontal;
+    -webkit-box-direction: reverse;
+        -ms-flex-direction: row-reverse;
+            flex-direction: row-reverse;
+    gap: 20px; }
+    #stage_data .pop_up__networks__pointer input {
+      width: calc( 100% - 85px);
+      padding: 7px 15px;
+      border-radius: 5px;
+      font-size: 18px; }
+    #stage_data .pop_up__networks__pointer #netw--delete {
+      position: absolute;
+      width: 20px;
+      height: 20px;
+      color: #de1b1b;
+      top: 0;
+      right: 0;
+      cursor: pointer; }
+      #stage_data .pop_up__networks__pointer #netw--delete::after {
+        display: block;
+        content: "";
+        width: 2px;
+        height: 20px;
+        background: currentColor;
+        position: absolute;
+        top: 0;
+        right: 9px;
+        -webkit-transform: rotate(-45deg);
+            -ms-transform: rotate(-45deg);
+                transform: rotate(-45deg); }
+      #stage_data .pop_up__networks__pointer #netw--delete::before {
+        display: block;
+        content: "";
+        width: 2px;
+        height: 20px;
+        background: currentColor;
+        position: absolute;
+        top: 0;
+        right: 9px;
+        -webkit-transform: rotate(45deg);
+            -ms-transform: rotate(45deg);
+                transform: rotate(45deg); }
+  #stage_data .pop_up__networks__plus {
+    gap: 20px;
+    margin-top: 10px;
+    width: 100%;
+    height: 40px; }
+    #stage_data .pop_up__networks__plus .add {
+      width: 40px;
+      height: 40px;
+      cursor: pointer;
+      border-radius: 40px;
+      -webkit-box-shadow: 1px 1px 5px #000;
+              box-shadow: 1px 1px 5px #000;
+      -webkit-transition: all ease .35s;
+      -o-transition: all ease .35s;
+      transition: all ease .35s; }
+      #stage_data .pop_up__networks__plus .add:hover {
+        -webkit-transition: all ease .35s;
+        -o-transition: all ease .35s;
+        transition: all ease .35s;
+        -webkit-box-shadow: 0 0 0 #000;
+                box-shadow: 0 0 0 #000; }
 
 .completed {
   position: relative;
@@ -505,11 +626,25 @@ iframe {
             align-items: flex-start;
     width: 350px; }
     .whyAboutUs__item__circle {
+      display: -webkit-box;
+      display: -ms-flexbox;
+      display: flex;
+      -webkit-box-pack: center;
+          -ms-flex-pack: center;
+              justify-content: center;
+      -webkit-box-align: center;
+          -ms-flex-align: center;
+              align-items: center;
       width: 60px;
       height: 60px;
       margin-right: 15px;
       border-radius: 60px;
       background-color: #de1b1b; }
+      .whyAboutUs__item__circle .icons {
+        width: 40px;
+        height: 40px; }
+        .whyAboutUs__item__circle .icons path {
+          fill: #fff; }
     .whyAboutUs__item__content {
       width: calc( 100% - 60px);
       text-align: left; }
@@ -518,6 +653,37 @@ iframe {
         line-height: 1.37; }
       .whyAboutUs__item__content p {
         line-height: 1.5; }
+
+.reviews {
+  padding: 50px 0; }
+  .reviews__tile {
+    width: 100%;
+    text-align: center;
+    font-size: 35px; }
+  .reviews__container {
+    margin-top: 25px;
+    gap: 20px; }
+    .reviews__container__item {
+      width: 320px; }
+      .reviews__container__item p {
+        padding: 10px 0;
+        line-height: 1.4; }
+  .reviews .rainting {
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-pack: left;
+        -ms-flex-pack: left;
+            justify-content: left;
+    gap: 7px; }
+    .reviews .rainting__item {
+      width: 25px;
+      height: 25px;
+      background-image: url("../images/icons/star_def.svg");
+      background-size: cover;
+      border-radius: 20px; }
+    .reviews .rainting__item.active {
+      background-image: url("../images/icons/star.svg"); }
 
 .no-webp .whats {
   background-image: url("../images/back.jpg"); }
@@ -583,8 +749,8 @@ iframe {
     .footer .soc-network__link:hover::after {
       content: attr(data-description);
       position: absolute;
-      bottom: 45px;
-      right: 55px;
+      bottom: 34px;
+      right: 30px;
       padding: 5px;
       background: #ffe;
       border: 1px solid #666;
@@ -594,7 +760,7 @@ iframe {
   width: 12px; }
 
 ::-webkit-scrollbar-button {
-  background-color: #1f1f1f; }
+  background-color: #ddd; }
 
 ::-webkit-scrollbar-thumb {
   background-color: gray; }
