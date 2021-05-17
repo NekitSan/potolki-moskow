@@ -8,6 +8,7 @@
 body {
   position: relative;
   min-height: 100vh;
+  color: #1B1B1C;
   font-size: 16px;
   font-family: "Arial", sans-serif; }
 
@@ -30,7 +31,7 @@ iframe {
   border: none; }
 
 .wrapper {
-  min-width: 1200px;
+  max-width: 1440px;
   min-height: 100vh;
   margin: 0 auto;
   background-color: #fff; }
@@ -120,8 +121,20 @@ iframe {
   margin-top: .35em;
   margin-left: 1em; }
 
+.header__attention__gradient, .whats__gradient {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: white;
+  background: -webkit-gradient(linear, left top, left bottom, from(white), to(rgba(255, 255, 255, 0)));
+  background: -o-linear-gradient(top, white 0%, rgba(255, 255, 255, 0) 100%);
+  background: linear-gradient(180deg, white 0%, rgba(255, 255, 255, 0) 100%);
+  z-index: 0; }
+
 .header {
-  width: 100vw;
+  width: 100%;
   min-height: 700px; }
   .header .logotip {
     display: -webkit-box;
@@ -156,17 +169,6 @@ iframe {
       padding: 10px 0 50px 0;
       color: #4f4f4f;
       z-index: 11; }
-  .header__attention__gradient {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background-color: white;
-    background: -webkit-gradient(linear, left top, left bottom, from(white), to(rgba(255, 255, 255, 0)));
-    background: -o-linear-gradient(top, white 0%, rgba(255, 255, 255, 0) 100%);
-    background: linear-gradient(180deg, white 0%, rgba(255, 255, 255, 0) 100%);
-    z-index: 0; }
   .header__attention {
     position: relative;
     display: -webkit-box;
@@ -388,7 +390,7 @@ iframe {
 .test__variations {
   position: relative;
   padding-top: 10px; }
-  .test__variations h3 {
+  .test__variations h2 {
     width: 70%;
     max-width: 560px;
     font-size: 30px;
@@ -471,7 +473,7 @@ iframe {
     right: 10px; }
 
 .whyAboutUs {
-  padding: 0 20px 0; }
+  padding: 0 20px 40px; }
   .whyAboutUs__tile {
     text-align: center;
     font-size: 35px; }
@@ -517,6 +519,77 @@ iframe {
       .whyAboutUs__item__content p {
         line-height: 1.5; }
 
+.no-webp .whats {
+  background-image: url("../images/back.jpg"); }
+
+.whats {
+  position: relative;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  text-align: center;
+  background-color: #ddd;
+  background-position: top;
+  background-attachment: fixed;
+  background-size: cover;
+  background-repeat: no-repeat;
+  padding: 10px 0 20px; }
+  .whats__container {
+    position: relative;
+    width: 50%;
+    z-index: 11; }
+    .whats__container h2 {
+      font-size: 48px; }
+    .whats__container p {
+      font-size: 22px;
+      padding: 15px 0 25px;
+      color: #4f4f4f; }
+  .whats .extra__button {
+    max-width: 200px;
+    padding: 12px 22px;
+    margin: 0 auto;
+    background-color: #de1b1b;
+    text-align: center;
+    font-size: 17px;
+    font-weight: 700;
+    color: #fff; }
+
+.footer {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -ms-flex-pack: distribute;
+      justify-content: space-around;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center; }
+  .footer .logotip .image {
+    width: 200px; }
+  .footer .soc-network__text {
+    text-align: center;
+    padding: 10px 0; }
+  .footer .soc-network__container {
+    gap: 20px; }
+  .footer .soc-network__link {
+    position: relative;
+    display: block;
+    color: #4f4f4f; }
+    .footer .soc-network__link:hover::after {
+      content: attr(data-description);
+      position: absolute;
+      bottom: 45px;
+      right: 55px;
+      padding: 5px;
+      background: #ffe;
+      border: 1px solid #666;
+      border-radius: 5px; }
+
 ::-webkit-scrollbar {
   width: 12px; }
 
@@ -527,3 +600,5 @@ iframe {
   background-color: gray; }
 
 .webp .header__main { background-image: url(../images/back.webp); }
+
+.webp .whats { background-image: url(../images/back.webp); }
