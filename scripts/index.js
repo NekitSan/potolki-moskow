@@ -171,6 +171,17 @@ $(".button--add_dontkinow").click( function() {
     $("#sizeArea").val( $(this).html() );
 });
 
+$(".fixed").click( function() {
+    if( !$(".pop_up__window"))
+    {
+        popUp.classList.remove("fixed");
+        document.body.classList.remove("unscroll");
+        document.querySelector("#pop_up .close").classList.add("hidden");
+    }
+
+    console.log( "da" );
+});
+
 function complited(i, arrData)
 {
     if(i == 6)
@@ -401,4 +412,5 @@ $("#stage_data").mouseover( function() {
 }
 
 showRating();;
+    ;
 });;
