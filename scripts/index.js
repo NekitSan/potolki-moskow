@@ -167,6 +167,10 @@ $('#stage_6 input:checkbox').click(function(){
 	}
 });
 
+$(".button--add_dontkinow").click( function() {
+    $("#sizeArea").val( $(this).html() );
+});
+
 function complited(i, arrData)
 {
     if(i == 6)
@@ -341,10 +345,6 @@ $(".pop_up__phone--call .close").click( function() {
     $(".pop_up__phone--call").addClass("hidden");
     $("body").removeClass("unscroll");
     $(this).addClass("hidden");
-});
-
-$(".button--add_dontkinow").click( function() {
-    $("#sizeArea").val( $(this).html() );
 });;
     const ntPlus = document.querySelector(".pop_up__networks__plus");
 
