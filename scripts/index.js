@@ -51,6 +51,7 @@ const buttonClosePopUp = popUp.querySelector(".close");
             {
                 if(i != 0)
                 {
+                    overflowY(popUp);
                     containerStagesArr[i].classList.add("hidden");
                     containerStagesArr[i-1].classList.remove("hidden");
                 }
@@ -63,56 +64,74 @@ const buttonClosePopUp = popUp.querySelector(".close");
         }
     }
 });
-buttonNext.addEventListener("click", ()=>{
+buttonNext.addEventListener("click", (e)=>{
+    let arrData = [];
 
     for(let i = 0; i < containerStagesNumb; i++)
     {
+        let temp = formData(i);
+        arrData.push( temp );
+        
         if(!containerStagesArr[i].classList.contains("hidden"))
         {
-            if(i < 6)
+            overflowY(popUp);
+            let nameStage = containerStagesArr[i].elements[0].getAttribute("name");
+            
+            if(nameStage == "size" || nameStage == "username")
             {
-                containerStagesArr[i].classList.add("hidden");
-                containerStagesArr[i+1].classList.remove("hidden");
-            }
-            if(i == 6)
-            {
-                if(popUp.querySelector(".pop_up__networks__pointer").children.length != 0)
+                if( valData( containerStagesArr[i].elements[nameStage] ) != "")
                 {
-                    let temp = formData("soc-network");
-                    if( temp.scnetw.length != 0)
+                    if(i <= 6)
                     {
-                        containerStagesArr[i].classList.add("hidden");
-                        containerStagesArr[i+1].classList.remove("hidden");
-    
-                        document.querySelector("#pop_up .close").classList.add("hidden");
-                        document.querySelector(".pop_up__control").classList.add("hidden");
-                    }
-                    else
-                    {
-                        alert("Заполните поле для соц-сетей!");
+
+                        if(popUp.querySelector(".pop_up__networks__pointer").children.length == 0 && nameStage == "size")
+                        {
+                            stageNext(i);
+                            
+                            complited(i, arrData);
+                        }
+                        else if(popUp.querySelector(".pop_up__networks__pointer").children.length == 0 && containerStagesArr[i].elements["username"].value != "" && containerStagesArr[i].elements["userphone"].value != "")
+                        {
+                            stageNext(i);
+                            
+                            complited(i, arrData);
+                        }
+                        else if(popUp.querySelector(".pop_up__networks__pointer").children.length != 0 && containerStagesArr[i].elements["soc-network"].value != "")
+                        {
+                            stageNext(i);
+                            
+                            complited(i, arrData);
+                        }
+                        else
+                        {
+                            canse(containerStagesArr[i]);
+                        }
                     }
                 }
                 else
                 {
-                    let temp = formData();
-                    if( temp.name.length != 0 && temp.phone.length != 0 )
-                    {
-                        containerStagesArr[i].classList.add("hidden");
-                        containerStagesArr[i+1].classList.remove("hidden");
-
-                        document.querySelector("#pop_up .close").classList.add("hidden");
-                        document.querySelector(".pop_up__control").classList.add("hidden");
-                    }
-                    else
-                    {
-                        alert("Заполните обязательные поля!");
-                    }
+                    canse(containerStagesArr[i]);
                 }
             }
+            else
+            {
+                if( pushData( containerStagesArr[i].elements[nameStage] ).length != 0 )
+                {
+                    if(i < 6)
+                    {
+                        stageNext(i);
+                        buttonLeft.classList.remove("hidden");
+                    }
+                }
+                else
+                {
+                    canse(containerStagesArr[i]);
+                }
+            }
+            
             break;
         }
     }
-    buttonLeft.classList.remove("hidden");
 });
 
 buttonCompleted.addEventListener("click", () => {
@@ -134,6 +153,7 @@ buttonOpenPopUp.addEventListener("click", () => {
 
     popUp.classList.add("fixed");
     document.body.classList.add("unscroll");
+    overflowY(popUp);
 });
 buttonClosePopUp.addEventListener("click", () => {
     popUp.classList.remove("fixed");
@@ -146,6 +166,27 @@ $('#stage_6 input:checkbox').click(function(){
 		$('#stage_6 input:checkbox').not(this).prop('checked', false);
 	}
 });
+
+function complited(i, arrData)
+{
+    if(i == 6)
+    {
+        document.querySelector("#pop_up .close").classList.add("hidden");
+        document.querySelector(".pop_up__control").classList.add("hidden");
+
+        buttonLeft.classList.add("hidden");
+
+        console.log(arrData); // сборка
+    } 
+}
+
+function stageNext(index)
+{
+    containerStagesArr[index].classList.add("hidden");
+    containerStagesArr[index+1].classList.remove("hidden");
+
+    buttonLeft.classList.remove("hidden");
+}
 
 function pushData(stages)
 {
@@ -163,43 +204,60 @@ function valData(stages)
     return stages.value;
 }
 
-function formData(mod)
+function formData(keys)
 {
-    let singlForm = {
-        "size": stage_2.elements['size'],
-        "name": stage_data.elements['username'],
-        "phone": stage_data.elements['userphone'],
-        "scnetw": stage_data.elements['soc-network'],
+    let mixData = {};
+
+    switch (keys) {
+        case 0:
+            mixData.zona = pushData( stage_1.elements['zona'] )
+            break;
+        case 1:
+            mixData.size = valData( stage_2.elements['size'] )
+            break;
+        case 2:
+            mixData.view = pushData( stage_3.elements['view'] )
+            break;
+        case 3:
+            mixData.material = pushData( stage_4.elements['material'] )
+            break;
+        case 4:
+            mixData.extra = pushData( stage_5.elements['extra'] )
+            break;
+        case 5:
+            mixData.bonus = pushData( stage_6.elements['bonus'] )
+            break;
+        case 6:
+            if(popUp.querySelector(".pop_up__networks__pointer").children.length != 0)
+                mixData.scnetw = valData( stage_data.elements['soc-network'] )
+            else
+                mixData.phone = valData( stage_data.elements['userphone'] )
+            mixData.name = valData( stage_data.elements['username'] )
+        break;
     }
 
-    let moreForm = {
-        "zona": stage_1.elements['zona'],
-        "view": stage_3.elements['view'],
-        "material": stage_4.elements['material'],
-        "extra": stage_5.elements['extra'],
-        "bonus": stage_6.elements['bonus'],
-    }
+    return mixData;
+}
 
-    let bigData = {
-        "zona": pushData(moreForm.zona),
-        "size": valData(singlForm.size),
-        "view": pushData(moreForm.view),
-        "material": pushData(moreForm.material),
-        "extra": pushData(moreForm.extra),
-        "bonus": pushData(moreForm.bonus),
-        "name": valData(singlForm.name),
-        "phone": valData(singlForm.phone),
-    }
+function canse(stage)
+{
+    $(stage).addClass("wiggle");
+    setTimeout(() => {
+        $(stage).removeClass("wiggle");
+    }, 500);
+}
 
-    if(mod == "soc-network")
+function overflowY(block)
+{
+    if( !popUp.classList.contains("fixed") )
     {
-        bigData.scnetw = valData(singlForm.scnetw);
-
-        return bigData;
+        block.classList.remove("overflow--scroll-y");
+        popUp.scrollIntoView();
     }
     else
     {
-        return bigData;
+        block.classList.add("overflow--scroll-y");
+        block.scrollTop = 0;
     }
 };
     const buttonReturn = {
@@ -247,7 +305,7 @@ $("#phone__return").click( function() {
 $(".whats .extra__button").click( function() {
     for(let i = 0; i < keysReturn.length; i++)
     {
-        if($(this).attr("id") == keysReturn[i])
+        if($(this).data("id") == keysReturn[i])
         {
             $("#pop_up__phone--call_tile").text(buttonReturn[keysReturn[i]].tile);
             $("#pop_up__phone--call_text").text(buttonReturn[keysReturn[i]].text);
@@ -283,6 +341,10 @@ $(".pop_up__phone--call .close").click( function() {
     $(".pop_up__phone--call").addClass("hidden");
     $("body").removeClass("unscroll");
     $(this).addClass("hidden");
+});
+
+$(".button--add_dontkinow").click( function() {
+    $("#sizeArea").val( $(this).html() );
 });;
     const ntPlus = document.querySelector(".pop_up__networks__plus");
 
@@ -313,12 +375,14 @@ $('#container__netw input:checkbox').click(function(){
             
         }
     }
+    $("#required--phone").addClass("hidden");
 });
 
 $("#stage_data").mouseover( function() {
     if($("#netw--delete"))
     {
         $("#netw--delete").click( function() {
+            $("#required--phone").removeClass("hidden");
             $(".pop_up__networks__pointer").empty();
         });
     }
